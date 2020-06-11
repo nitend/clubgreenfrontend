@@ -1,0 +1,10 @@
+query allBooking{
+    allBooking {
+            id,
+            from,
+            to,
+            deleted,
+            propertyId
+    }
+
+}

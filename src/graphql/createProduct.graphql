@@ -1,0 +1,12 @@
+query createProduct{
+   getNewProduct {
+         id,
+         title,
+         creationDate,
+         paymentPricePlan,       
+         price,
+         minmonth,
+         deleted,
+         active 
+   }
+}

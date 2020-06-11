@@ -1,0 +1,3 @@
+mutation subscribeToPricePlan($priceplan: String!){
+   subscribeToPricePlan(priceplan: $priceplan)
+}

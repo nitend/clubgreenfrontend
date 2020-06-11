@@ -1,0 +1,17 @@
+.header {
+    font-size: larger;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.listrow {
+    margin-top: 8px;
+}
+
+td.label {
+    margin-top: 8px;
+}
+
+td.value {
+    margin-top: 8px;
+}

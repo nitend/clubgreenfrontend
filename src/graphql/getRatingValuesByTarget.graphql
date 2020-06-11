@@ -1,0 +1,8 @@
+query getRatingValuesByTarget($targettype: String!, $targetId: String!){
+    getRatingValuesByTarget(targettype: $targettype, targetId: $targetId) {
+        targetId,
+        targettype,
+        ratings,
+        ratingValue
+    }
+}

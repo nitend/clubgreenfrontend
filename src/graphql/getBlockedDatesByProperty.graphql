@@ -1,0 +1,7 @@
+query blockedDatesByProperty($propertyId: String!){
+    getBlockedDatesFromProperty(propertyId: $propertyId) {
+        bookingId
+        dateTimeStamp
+        type
+    }
+}

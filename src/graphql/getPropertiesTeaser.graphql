@@ -1,0 +1,14 @@
+query TeaserProperties{
+    teaserProperties {
+        id,
+        title,
+        subtext,
+        location,
+        long,
+        lat,
+        beds_adult,
+        beds_kids,
+        beds_tent,
+        images
+    }
+}

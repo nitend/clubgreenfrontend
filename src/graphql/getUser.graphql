@@ -1,0 +1,15 @@
+query Me {
+    me {
+        email
+        id
+        paymentServiceId,
+        gender,
+        firstname,
+        surname,
+        street,
+        streetNumber,
+        postalcode,
+        town
+    }
+
+}

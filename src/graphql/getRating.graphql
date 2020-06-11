@@ -1,0 +1,11 @@
+query getRating ($id: String!) {
+    getRating (id: $id) {
+        id,
+        targettype,
+        targetId,
+        comment,
+        rating,
+        title,
+        userId
+    }
+}

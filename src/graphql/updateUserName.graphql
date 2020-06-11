@@ -1,0 +1,3 @@
+mutation updateUserName($username: UserName!){
+   updateUserName(username: $username)
+}

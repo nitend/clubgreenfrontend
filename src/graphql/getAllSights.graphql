@@ -1,0 +1,12 @@
+query Sights{
+    getSights {
+        id,
+        title,
+        type,
+        subtext,
+        location,
+        long,
+        lat,
+        images,
+    }
+}

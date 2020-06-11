@@ -1,0 +1,8 @@
+query BookingsByProperty ($propertyId: String!) {
+    activeBookingsForProperty (propertyId: $propertyId) {
+            propertyId,
+            to,
+            from
+    }
+
+}

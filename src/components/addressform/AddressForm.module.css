@@ -1,0 +1,5 @@
+.row_elements {
+    display: flex;
+    margin: 8px;
+    justify-content: flex-start;
+}

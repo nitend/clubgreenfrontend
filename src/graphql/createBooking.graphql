@@ -1,0 +1,3 @@
+mutation CreateMyBooking($to: Float!, $from: Float!, $propertyId: String!){
+   bookProperty(to: $to, from: $from, propertyId: $propertyId)
+}

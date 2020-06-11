@@ -1,0 +1,13 @@
+query getSight ($id: String!) {
+    getSight (id: $id) {
+        id,
+        title,
+        type,
+        subtext,
+        location,
+        long,
+        lat,
+        images,
+    }
+
+}

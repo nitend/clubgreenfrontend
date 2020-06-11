@@ -1,0 +1,18 @@
+.card {
+    display: flex;
+}
+
+.payment-form {
+    flex: 1
+}
+
+.payment-input-line {
+    display: flex;
+}
+
+.payment-input-field {
+    margin: 4px;
+    border-radius: 8px;
+    border: 1px solid #73AD21;
+    padding: 8px;
+}

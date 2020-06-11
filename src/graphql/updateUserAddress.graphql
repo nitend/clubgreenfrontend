@@ -1,0 +1,3 @@
+mutation updateUserAddress($useraddress: UserAddress!){
+   updateUserAddress(useraddress: $useraddress)
+}

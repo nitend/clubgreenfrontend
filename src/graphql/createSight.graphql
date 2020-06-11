@@ -1,0 +1,3 @@
+mutation saveSight($sight: SightInput!){
+   saveSight(sight: $sight)
+}

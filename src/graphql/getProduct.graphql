@@ -1,0 +1,12 @@
+query getProduct ($id: String!) {
+    getProduct (id: $id) {
+        id,
+        title,
+        creationDate,
+        paymentPricePlan,       
+        price,
+        minmonth,
+        deleted,
+        active    
+    }
+}

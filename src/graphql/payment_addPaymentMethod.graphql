@@ -1,0 +1,3 @@
+mutation addPaymentMethod($paymentMethodId: String!){
+   addPaymentMethod(paymentMethodId: $paymentMethodId)
+}
