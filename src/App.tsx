@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { Routes } from './pages/pageframe/Routes'
 import { setAccessToken } from './accessToken';
 import { ErrorMessage } from './pages/pageframe/global/Messages/ErrorMessage';
+import { server_url } from '.';
 
 
 interface Props {
@@ -18,7 +19,7 @@ export const App: React.FC<Props> = () => {
     const [failed, isFailed] = useState();
 
     useEffect(() => {
-        fetch ("http://localhost:4000/refresh_token", {
+        fetch (server_url +"/refresh_token", {
             method: "POST",
             credentials: "include"
         }).then(async x => {

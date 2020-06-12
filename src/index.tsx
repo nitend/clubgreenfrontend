@@ -13,6 +13,9 @@ import jwtDecode from 'jwt-decode';
 
 const cache = new InMemoryCache({});
 
+export const server_url = process.env.NODE_ENV == "development" ? "http://localhost:4000" : "https://clubgreenbackend.azurewebsites.net"
+
+console.log(server_url);
 
 const requestLink = new ApolloLink(
     (operation, forward) => new Observable(observer => {
@@ -67,7 +70,7 @@ const client = new ApolloClient({
 
         fetchAccessToken: () => {
             console.log("fetch token ")
-            return fetch ("http://localhost:4000/refresh_token", {
+            return fetch (server_url +"/refresh_token", {
                 method: "POST",
                 credentials: "include"
             })
@@ -86,7 +89,7 @@ const client = new ApolloClient({
     }),
     requestLink,
     new HttpLink({
-        uri: 'http://localhost:4000/graphql',
+        uri: server_url +'/graphql',
         credentials: 'include'
     })
   ]),
