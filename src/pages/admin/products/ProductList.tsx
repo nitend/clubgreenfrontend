@@ -48,7 +48,8 @@ export const ProductList: React.FC<Props> = (props) => {
     }
 
     const onNewPropertyClicked = () => {
-        onProductEdit("new");
+        history.push( path + '/' + "new");
+        // onProductEdit("new");
     } 
 
     if(data && data.getAllProducts){

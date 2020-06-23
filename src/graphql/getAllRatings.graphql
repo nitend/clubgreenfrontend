@@ -1,7 +1,7 @@
 query AllRatings{
     getAllRatings {
         id,
-        targettype,
+        creationDate,
         targetId,
         comment,
         rating,

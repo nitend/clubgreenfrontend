@@ -3,11 +3,11 @@ import { Moment } from "moment";
 import React from "react";
 
 type Booking = {
-    selectedProperty: Property | null,
+    selectedProperty: string | null,
     arrivalDate: Moment | null,
     departureDate: Moment | null,
     isActive: boolean,
-    setSelectedPropterty: (selectedProerty: Property | null) => void,
+    setSelectedPropterty: (selectedProertyId: string | null) => void,
     setArrivalDate: (arrivalDate: Moment | null) => void,
     setDepartureDate: (deoartureDate: Moment | null) => void
     setIsActive: (isActive: boolean ) => void 

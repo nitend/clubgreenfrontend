@@ -4,6 +4,7 @@ import { Field } from "../lists/TableList";
 export const newSight: Sight = { 
     id: "",
     title: "",
+    creationDate: "",
     subtext: "",
     location: "",
     type: "",

@@ -1,6 +1,7 @@
 query getProperty ($id: String!) {
     getProperty (id: $id) {
         id,
+        creationDate,
         title,
         subtext,
         location,

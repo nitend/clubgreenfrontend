@@ -1,5 +1,5 @@
 import React from 'react'
-import { usePropertiesQuery } from '../../../generated/graphql'
+import { useGetAllPropertiesQuery } from '../../../generated/graphql'
 import { PropertyView } from './PropertyView';
 import { BasicContentBox } from '../../pageframe/global/StyledComponents';
 
@@ -10,7 +10,7 @@ interface Props {
 
 
 export const PropertyList:  React.FC<Props> = () => {
-    const {data, loading, error} = usePropertiesQuery();
+    const {data, loading, error} = useGetAllPropertiesQuery();
 
 
     if(loading){
@@ -32,7 +32,7 @@ export const PropertyList:  React.FC<Props> = () => {
     
     return (  
         <BasicContentBox>
-            {data.allProperties?.map((x) => (                                                   
+            {data.getAllProperties?.map((x) => (                                                   
                         <PropertyView key={x.id} property={x}></PropertyView>
             ))}
         </BasicContentBox>

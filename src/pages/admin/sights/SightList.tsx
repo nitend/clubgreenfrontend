@@ -44,12 +44,12 @@ export const SightList: React.FC<Props> = (props) => {
         onEntityEdit(0);
     } 
 
-    if(data && data.getSights){
+    if(data && data.getAllSights){
         return(
             <Container>
                 <TableList 
                     fields={SightFields} 
-                    data={data.getSights}
+                    data={data.getAllSights}
                     onDeleteClicked={onEntityDelete}
                     onEditClicked={onEntityEdit}></TableList>  
                 <Button onClick={onNewEntityClicked}>Neuer Interessanter Ort</Button>

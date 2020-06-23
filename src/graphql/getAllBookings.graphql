@@ -1,10 +1,9 @@
-query allBooking{
-    allBooking {
+query allBookings{
+    getAllBookings {
+            creationDate,
             id,
-            from,
-            to,
-            deleted,
+            dateOfArrival,
+            dateOfDeparture,
             propertyId
     }
-
 }

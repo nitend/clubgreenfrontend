@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { Routes } from './pages/pageframe/Routes'
 import { setAccessToken } from './accessToken';
 import { ErrorMessage } from './pages/pageframe/global/Messages/ErrorMessage';
-import { server_url } from '.';
+import { BASE_BACKEND_URL } from './config';
 
 
 interface Props {
@@ -19,7 +19,7 @@ export const App: React.FC<Props> = () => {
     const [failed, isFailed] = useState();
 
     useEffect(() => {
-        fetch (server_url +"/refresh_token", {
+        fetch (BASE_BACKEND_URL +"refresh_token", {
             method: "POST",
             credentials: "include"
         }).then(async x => {

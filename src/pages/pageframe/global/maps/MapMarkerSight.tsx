@@ -10,15 +10,18 @@ export const MapMarkerSight: React.FC<Props> = (Props) => {
 
     const sight = Props.sight;
 
-   return (
-        <Marker
-            key={sight.id}
-            position={[
-                sight.lat,
-                sight.long
-            ]}
-            onClick={() => {
-                    
-            }}
-        />    )
+    if(sight && sight.lat && sight.long && sight.title){
+        return (
+                <Marker
+                    key={sight.id}
+                    position={[
+                        sight.lat,
+                        sight.long
+                    ]}
+                    onClick={() => {
+                            
+                    }}
+                />    )
+    }
+    return (<div></div>)
 }

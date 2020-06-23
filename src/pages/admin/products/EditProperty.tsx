@@ -6,6 +6,7 @@ import { MessageView } from '../../pageframe/global/Messages/MessageView';
 import { LoadingAnimation } from '../../pageframe/global/Messages/LoadingAnimation';
 import { ErrorMessage } from '../../pageframe/global/Messages/ErrorMessage';
 import { formatProduct, newProduct } from './ProductObject';
+import { PROPERTY_IMAGE_UPLOAD_URL } from '../../../config';
 
 
 interface Props {
@@ -45,7 +46,7 @@ export const EditProperty: React.FC<Props> = (props) => {
                 entity={product} 
                 store={onSubmit} 
                 entityId={product.id}
-                imageuploadurl={"http://localhost:4000/upload/property/image"}>     
+                imageuploadurl={PROPERTY_IMAGE_UPLOAD_URL}>     
                 <MessageView severity={"success"} message={"Die Daten wurden gespeichert"} show={showMessage} />
             </Editor>
         )   

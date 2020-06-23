@@ -4,10 +4,10 @@ import { Field } from "../lists/TableList";
 export const newRating: Rating = { 
     id: "",
     userId: 0,
+    creationDate: "",
     rating: 2.5,
     title: "testtitle",
     targetId: 0,
-    targettype: "property",
     comment: "ich bin zufrieden"
 }
 

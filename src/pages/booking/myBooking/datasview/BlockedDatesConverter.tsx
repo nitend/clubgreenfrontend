@@ -7,8 +7,8 @@ export const generateBlockedDaysList = async (bookings: Booking[]) => {
     if(bookings){
 
       bookings.map((dateRange) => {
-          var start = moment(dateRange.from).startOf("d");
-          var end = moment(dateRange.to)
+          var start = moment(dateRange.dateOfArrival || "").startOf("d");
+          var end = moment(dateRange.dateOfDeparture || "")
           do{               
               blockedDays.push(start);
               start = start.add(1, "day");               

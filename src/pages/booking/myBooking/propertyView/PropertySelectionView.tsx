@@ -3,6 +3,7 @@ import { Grid, Typography, Box } from "@material-ui/core"
 import { BookingContext } from "../../BookingContext"
 import { FeaturesBatch } from "./FeaturesBatch"
 import { IMAGE_BASE_URL } from "../../../../config"
+import { useGetPropertyQuery } from "../../../../generated/graphql"
 
 interface Props {
 
@@ -11,9 +12,15 @@ interface Props {
 export const PropertySelectionView:  React.FC<Props> = () => { 
 
     const {selectedProperty} = useContext(BookingContext)
+    const {data, loading, error} = useGetPropertyQuery({
+        variables: {
+            id: selectedProperty || ""
+        }
+    })
 
 
-    if(selectedProperty){
+    if(data && data.getProperty){
+        const property = data.getProperty
         return (
         <div style={{marginTop: "8px"}}>    
             <Grid container spacing={2} alignItems="flex-end">
@@ -21,21 +28,21 @@ export const PropertySelectionView:  React.FC<Props> = () => {
                     <Grid item >
                         <Box >               
                             <img alt={"testbild"} 
-                                src={IMAGE_BASE_URL + selectedProperty.images[0]} 
+                                src={IMAGE_BASE_URL + property.images[0]} 
                                 width={"120px"}/>
                         </Box>
                     </Grid>
                     <Grid item xs={6} >
                         <Typography variant="h6">
-                            {selectedProperty.title}
+                            {property.title}
                         </Typography>
                         <Typography variant="subtitle2">
-                            {selectedProperty.subtext}
+                            {property.subtext}
                         </Typography>
                         <Typography variant="body2">
-                            {selectedProperty.location}
+                            {property.location}
                         </Typography>
-                        <FeaturesBatch value={selectedProperty.beds_adult}>
+                        <FeaturesBatch value={property.beds_adult || 0}>
                             test
                             </FeaturesBatch>
                         </Grid>

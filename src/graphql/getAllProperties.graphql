@@ -1,6 +1,7 @@
-query Properties{
-    allProperties {
+query getAllProperties{
+    getAllProperties {
         id,
+        creationDate,
         title,
         subtext,
         location,

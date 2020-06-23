@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Sight, useGetSightQuery, useSaveSightMutation } from '../../../generated/graphql'
+import { Sight, useGetSightQuery, useCreateSightMutation} from '../../../generated/graphql'
 import { useParams } from 'react-router-dom';
 import { Editor } from '../form/Editor';
 import { MessageView } from '../../pageframe/global/Messages/MessageView';
@@ -24,7 +24,7 @@ export const SightEditor: React.FC<Props> = (props) => {
         }
     });
     
-    const [saveSight] = useSaveSightMutation();
+    const [saveSight] = useCreateSightMutation();
 
     async function onSubmit(values: Sight) {     
         var result = await saveSight({
@@ -39,16 +39,16 @@ export const SightEditor: React.FC<Props> = (props) => {
 
     
     if((data && data.getSight) || (sightId === "0")) {
-        var property = newSight;
+        var sight = newSight;
         if(data?.getSight){
-            property = data.getSight;
+            sight = data.getSight;
         }
         
         return(
             <Editor 
-                entity={property} 
+                entity={sight} 
                 store={onSubmit} 
-                entityId={property.id}
+                entityId={sight.id}
                 imageuploadurl={SIGHT_IMAGE_UPLOAD_URL}>     
                 <MessageView severity={"success"} message={"Die Daten wurden gespeichert"} show={showMessage} />
             </Editor>

@@ -18,7 +18,7 @@ export const BookingRouter:  React.FC<Props> = () => {
     const [departureDate, setDepartureD] = useState();
     const [isActive, setIsActi] = useState(false)
 
-    const setSelectedPropterty = (property: Property | null): void => {
+    const setSelectedPropterty = (property: string | null): void => {
         setSelectedProp(property)
         console.log(property)
     }

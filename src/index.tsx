@@ -10,12 +10,11 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink, Observable } from 'apollo-link';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 import jwtDecode from 'jwt-decode';
+import { BASE_BACKEND_URL } from './config';
 
 const cache = new InMemoryCache({});
 
-export const server_url = process.env.NODE_ENV == "development" ? "http://localhost:4000" : "https://clubgreenbackend.azurewebsites.net"
-
-console.log(server_url);
+console.log(BASE_BACKEND_URL);
 
 const requestLink = new ApolloLink(
     (operation, forward) => new Observable(observer => {
@@ -70,7 +69,7 @@ const client = new ApolloClient({
 
         fetchAccessToken: () => {
             console.log("fetch token ")
-            return fetch (server_url +"/refresh_token", {
+            return fetch (BASE_BACKEND_URL +"refresh_token", {
                 method: "POST",
                 credentials: "include"
             })
@@ -89,7 +88,7 @@ const client = new ApolloClient({
     }),
     requestLink,
     new HttpLink({
-        uri: server_url +'/graphql',
+        uri: BASE_BACKEND_URL +'graphql',
         credentials: 'include'
     })
   ]),

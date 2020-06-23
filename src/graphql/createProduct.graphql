@@ -6,7 +6,6 @@ query createProduct{
          paymentPricePlan,       
          price,
          minmonth,
-         deleted,
          active 
    }
 }

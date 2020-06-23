@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTeaserPropertiesQuery} from '../../../generated/graphql'
+import { useGetAllPropertiesQuery} from '../../../generated/graphql'
 import { TableBody, Table, Container, Button } from '@material-ui/core';
 import { LoadingAnimation } from '../../pageframe/global/Messages/LoadingAnimation';
 import { ErrorMessage } from '../../pageframe/global/Messages/ErrorMessage';
@@ -11,7 +11,7 @@ interface Props {
 
 export const PropertyList: React.FC<Props> = (props) => {
 
-    const {data, loading, error} = useTeaserPropertiesQuery();
+    const {data, loading, error} = useGetAllPropertiesQuery();
     const {path} = useRouteMatch();
 
     const history = useHistory();
@@ -42,21 +42,21 @@ export const PropertyList: React.FC<Props> = (props) => {
         onPropertyEdit(0);
     } 
 
-    if(data && data.teaserProperties){
+    if(data && data.getAllProperties){
         return(
             <Container>
                 <Table>      
                     <TableBody>
-                        {data?.teaserProperties.map(x => {
+                        {data?.getAllProperties.map(x => {
                         return (              
                             <ListItem
                                 key={x.id} 
                                 onEditClicked={onPropertyEdit} 
                                 onDeletClicked={onPropertyDelete} 
                                 id={x.id}
-                                title={x.title}
-                                tagone={x.location}
-                                tagtwo={x.subtext}
+                                title={x.title || ""}
+                                tagone={x.location || "" }
+                                tagtwo={x.subtext || ""}
                                 tagthree={""} />
                             )                
                         })}

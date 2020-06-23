@@ -2,6 +2,7 @@ import { Property } from "../../../generated/graphql";
 
 export const newProperty: Property = { 
     id: "",
+    creationDate: "",
     title: "",
     subtext: "",
     location: "",

@@ -9,7 +9,12 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
-  DateTime: any,
+};
+
+export type BaseEntity = {
+   __typename?: 'BaseEntity',
+  id: Scalars['String'],
+  creationDate: Scalars['String'],
 };
 
 export type BlockedDate = {
@@ -22,33 +27,18 @@ export type BlockedDate = {
 export type Booking = {
    __typename?: 'Booking',
   id: Scalars['String'],
-  user: Scalars['String'],
-  date: Scalars['Float'],
-  from: Scalars['Float'],
-  to: Scalars['Float'],
-  deleted: Scalars['Boolean'],
-  propertyId: Scalars['String'],
-  property: Property,
+  creationDate: Scalars['String'],
+  user?: Maybe<Scalars['String']>,
+  dateOfArrival?: Maybe<Scalars['String']>,
+  dateOfDeparture?: Maybe<Scalars['String']>,
+  propertyId?: Maybe<Scalars['String']>,
 };
 
-
-export type Email = {
-   __typename?: 'Email',
-  id: Scalars['Int'],
-  email: Scalars['String'],
-  verified: Scalars['Boolean'],
-  verification_token: Scalars['String'],
-  verification_date: Scalars['Float'],
-};
-
-export type Location = {
-   __typename?: 'Location',
-  id: Scalars['String'],
-  title: Scalars['String'],
-  type: Scalars['String'],
-  lat: Scalars['Float'],
-  long: Scalars['Float'],
-  images: Array<Scalars['String']>,
+export type BookingInput = {
+  user?: Maybe<Scalars['String']>,
+  dateOfArrival?: Maybe<Scalars['String']>,
+  dateOfDeparture?: Maybe<Scalars['String']>,
+  propertyId?: Maybe<Scalars['String']>,
 };
 
 export type LoginResponse = {
@@ -59,6 +49,22 @@ export type LoginResponse = {
 
 export type Mutation = {
    __typename?: 'Mutation',
+  updateProduct: Scalars['Boolean'],
+  deleteProduct: Scalars['Boolean'],
+  subscribeToPricePlan: Scalars['Boolean'],
+  addPaymentMethod: Scalars['Boolean'],
+  updateRating: Scalars['Boolean'],
+  deleteRating: Scalars['Boolean'],
+  insertRating: Scalars['Boolean'],
+  updateSight: Scalars['Boolean'],
+  deleteSight: Scalars['Boolean'],
+  insertSight: Scalars['Boolean'],
+  updateBooking: Scalars['Boolean'],
+  deleteBooking: Scalars['Boolean'],
+  createBooking: Scalars['Boolean'],
+  updateProperty: Scalars['Boolean'],
+  deleteProperty: Scalars['Boolean'],
+  insertProperty: Scalars['Boolean'],
   logout: Scalars['Boolean'],
   revokeRefreshTokeForUser: Scalars['Boolean'],
   createPaymentServiceCustomer: Scalars['Boolean'],
@@ -66,24 +72,93 @@ export type Mutation = {
   register: Scalars['Boolean'],
   updateUserName: Scalars['Boolean'],
   updateUserAddress: Scalars['Boolean'],
-  bookProperty: Scalars['Boolean'],
-  deleteBooking: Scalars['Boolean'],
-  saveProperty: Scalars['Boolean'],
-  createProperty: Scalars['Boolean'],
-  deleteProperty: Scalars['Boolean'],
-  saveSight: Scalars['Boolean'],
-  deleteSight: Scalars['Boolean'],
-  saveRating: Scalars['Boolean'],
-  deleteRating: Scalars['Boolean'],
-  updateProduct: Scalars['Boolean'],
-  deleteProduct: Scalars['Boolean'],
-  subscribeToPricePlan: Scalars['Boolean'],
-  addPaymentMethod: Scalars['Boolean'],
+};
+
+
+export type MutationUpdateProductArgs = {
+  product: ProductInput
+};
+
+
+export type MutationDeleteProductArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationSubscribeToPricePlanArgs = {
+  priceplan: Scalars['String']
+};
+
+
+export type MutationAddPaymentMethodArgs = {
+  paymentMethodId: Scalars['String']
+};
+
+
+export type MutationUpdateRatingArgs = {
+  rating: RatingInput
+};
+
+
+export type MutationDeleteRatingArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationInsertRatingArgs = {
+  rating: RatingInput
+};
+
+
+export type MutationUpdateSightArgs = {
+  sight: SightInput
+};
+
+
+export type MutationDeleteSightArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationInsertSightArgs = {
+  sight: SightInput
+};
+
+
+export type MutationUpdateBookingArgs = {
+  booking: BookingInput
+};
+
+
+export type MutationDeleteBookingArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationCreateBookingArgs = {
+  propertyId: Scalars['String'],
+  departure: Scalars['String'],
+  arrival: Scalars['String']
+};
+
+
+export type MutationUpdatePropertyArgs = {
+  property: PropertyInput
+};
+
+
+export type MutationDeletePropertyArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationInsertPropertyArgs = {
+  property: PropertyInput
 };
 
 
 export type MutationRevokeRefreshTokeForUserArgs = {
-  userId: Scalars['Int']
+  userId: Scalars['String']
 };
 
 
@@ -109,153 +184,100 @@ export type MutationUpdateUserAddressArgs = {
   useraddress: UserAddress
 };
 
-
-export type MutationBookPropertyArgs = {
-  to: Scalars['Float'],
-  from: Scalars['Float'],
-  propertyId: Scalars['String']
-};
-
-
-export type MutationDeleteBookingArgs = {
-  bookingId: Scalars['String']
-};
-
-
-export type MutationSavePropertyArgs = {
-  property: PropertyInput
-};
-
-
-export type MutationCreatePropertyArgs = {
-  images: Array<Scalars['String']>,
-  beds_tent: Scalars['Float'],
-  beds_kids: Scalars['Float'],
-  beds_adult: Scalars['Float'],
-  long: Scalars['Float'],
-  lat: Scalars['Float'],
-  subtext: Scalars['String'],
-  location: Scalars['String'],
-  title: Scalars['String']
-};
-
-
-export type MutationDeletePropertyArgs = {
-  id: Scalars['String']
-};
-
-
-export type MutationSaveSightArgs = {
-  sight: SightInput
-};
-
-
-export type MutationDeleteSightArgs = {
-  id: Scalars['String']
-};
-
-
-export type MutationSaveRatingArgs = {
-  rating: RatingInput
-};
-
-
-export type MutationDeleteRatingArgs = {
-  id: Scalars['String']
-};
-
-
-export type MutationUpdateProductArgs = {
-  product: ProductInput
-};
-
-
-export type MutationDeleteProductArgs = {
-  id: Scalars['String']
-};
-
-
-export type MutationSubscribeToPricePlanArgs = {
-  priceplan: Scalars['String']
-};
-
-
-export type MutationAddPaymentMethodArgs = {
-  paymentMethodId: Scalars['String']
-};
-
 export type Product = {
    __typename?: 'Product',
   id: Scalars['String'],
-  creationDate: Scalars['DateTime'],
-  title: Scalars['String'],
-  paymentPricePlan: Scalars['String'],
-  price: Scalars['Float'],
-  minmonth: Scalars['Float'],
-  deleted: Scalars['Boolean'],
-  active: Scalars['Boolean'],
+  creationDate: Scalars['String'],
+  title?: Maybe<Scalars['String']>,
+  paymentPricePlan?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  minmonth?: Maybe<Scalars['Float']>,
+  active?: Maybe<Scalars['Boolean']>,
 };
 
 export type ProductInput = {
-  id: Scalars['String'],
-  creationDate: Scalars['DateTime'],
-  title: Scalars['String'],
-  paymentPricePlan: Scalars['String'],
-  price: Scalars['Float'],
-  minmonth: Scalars['Float'],
-  deleted: Scalars['Boolean'],
-  active: Scalars['Boolean'],
+  title?: Maybe<Scalars['String']>,
+  paymentPricePlan?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  minmonth?: Maybe<Scalars['Float']>,
+  active?: Maybe<Scalars['Boolean']>,
 };
 
 export type Property = {
    __typename?: 'Property',
   id: Scalars['String'],
-  title: Scalars['String'],
-  subtext: Scalars['String'],
-  location: Scalars['String'],
-  long: Scalars['Float'],
-  lat: Scalars['Float'],
-  beds_adult: Scalars['Float'],
-  beds_kids: Scalars['Float'],
-  beds_tent: Scalars['Float'],
+  creationDate: Scalars['String'],
+  title?: Maybe<Scalars['String']>,
+  subtext?: Maybe<Scalars['String']>,
+  location?: Maybe<Scalars['String']>,
+  long?: Maybe<Scalars['Float']>,
+  lat?: Maybe<Scalars['Float']>,
+  beds_adult?: Maybe<Scalars['Float']>,
+  beds_kids?: Maybe<Scalars['Float']>,
+  beds_tent?: Maybe<Scalars['Float']>,
   images: Array<Scalars['String']>,
 };
 
 export type PropertyInput = {
-  id: Scalars['String'],
-  title: Scalars['String'],
-  subtext: Scalars['String'],
-  location: Scalars['String'],
-  long: Scalars['Float'],
-  lat: Scalars['Float'],
-  beds_adult: Scalars['Float'],
-  beds_kids: Scalars['Float'],
-  beds_tent: Scalars['Float'],
+  title?: Maybe<Scalars['String']>,
+  subtext?: Maybe<Scalars['String']>,
+  location?: Maybe<Scalars['String']>,
+  long?: Maybe<Scalars['Float']>,
+  lat?: Maybe<Scalars['Float']>,
+  beds_adult?: Maybe<Scalars['Float']>,
+  beds_kids?: Maybe<Scalars['Float']>,
+  beds_tent?: Maybe<Scalars['Float']>,
   images: Array<Scalars['String']>,
 };
 
 export type Query = {
    __typename?: 'Query',
-  me?: Maybe<User>,
-  users: Array<User>,
-  myBooking?: Maybe<Booking>,
-  allBooking?: Maybe<Array<Booking>>,
-  getBlockedDatesFromProperty?: Maybe<Array<BlockedDate>>,
-  propertiesEvalable?: Maybe<Array<Booking>>,
-  allProperties?: Maybe<Array<Property>>,
-  teaserProperties?: Maybe<Array<Property>>,
-  activeBookingsForProperty?: Maybe<Array<Booking>>,
-  getProperties?: Maybe<Array<Property>>,
-  getProperty?: Maybe<Property>,
-  getSights?: Maybe<Array<Sight>>,
-  getSight?: Maybe<Sight>,
-  getAllRatings?: Maybe<Array<Rating>>,
-  getRating?: Maybe<Rating>,
-  getRatingValuesByTarget?: Maybe<RatingValues>,
-  getAllLocations?: Maybe<Array<Location>>,
-  getAllProducts?: Maybe<Array<Product>>,
   getProduct?: Maybe<Product>,
   getNewProduct: Product,
+  getAllProducts?: Maybe<Array<Product>>,
+  getRating?: Maybe<Rating>,
+  getNewRating: Rating,
+  getAllRatings?: Maybe<Array<Rating>>,
+  getRatingValuesByTarget?: Maybe<RatingValues>,
+  getSight?: Maybe<Sight>,
+  getNewSight: Sight,
+  getAllSights?: Maybe<Array<Sight>>,
+  getBooking?: Maybe<Booking>,
+  myBooking?: Maybe<Booking>,
+  getNewBooking: Booking,
+  getAllBookings?: Maybe<Array<Booking>>,
+  getBlockedDatesFromProperty?: Maybe<Array<BlockedDate>>,
+  propertiesEvalable?: Maybe<Array<Booking>>,
+  getProperty?: Maybe<Property>,
+  getNewProperty: Property,
+  getAllProperties?: Maybe<Array<Property>>,
+  me?: Maybe<User>,
+  users: Array<User>,
+};
+
+
+export type QueryGetProductArgs = {
+  id: Scalars['String']
+};
+
+
+export type QueryGetRatingArgs = {
+  id: Scalars['String']
+};
+
+
+export type QueryGetRatingValuesByTargetArgs = {
+  targetId: Scalars['String']
+};
+
+
+export type QueryGetSightArgs = {
+  id: Scalars['String']
+};
+
+
+export type QueryGetBookingArgs = {
+  id: Scalars['String']
 };
 
 
@@ -270,55 +292,27 @@ export type QueryPropertiesEvalableArgs = {
 };
 
 
-export type QueryActiveBookingsForPropertyArgs = {
-  propertyId: Scalars['String']
-};
-
-
 export type QueryGetPropertyArgs = {
-  id: Scalars['String']
-};
-
-
-export type QueryGetSightArgs = {
-  id: Scalars['String']
-};
-
-
-export type QueryGetRatingArgs = {
-  id: Scalars['String']
-};
-
-
-export type QueryGetRatingValuesByTargetArgs = {
-  targetId: Scalars['String'],
-  targettype: Scalars['String']
-};
-
-
-export type QueryGetProductArgs = {
   id: Scalars['String']
 };
 
 export type Rating = {
    __typename?: 'Rating',
   id: Scalars['String'],
-  title: Scalars['String'],
-  targettype: Scalars['String'],
+  creationDate: Scalars['String'],
+  title?: Maybe<Scalars['String']>,
   targetId: Scalars['Float'],
-  rating: Scalars['Float'],
-  userId: Scalars['Float'],
-  comment: Scalars['String'],
+  rating?: Maybe<Scalars['Float']>,
+  userId?: Maybe<Scalars['Float']>,
+  comment?: Maybe<Scalars['String']>,
 };
 
 export type RatingInput = {
-  id: Scalars['String'],
-  title: Scalars['String'],
-  targettype: Scalars['String'],
+  title?: Maybe<Scalars['String']>,
   targetId: Scalars['Float'],
-  rating: Scalars['Float'],
-  userId: Scalars['Float'],
-  comment: Scalars['String'],
+  rating?: Maybe<Scalars['Float']>,
+  userId?: Maybe<Scalars['Float']>,
+  comment?: Maybe<Scalars['String']>,
 };
 
 export type RatingValues = {
@@ -332,31 +326,32 @@ export type RatingValues = {
 export type Sight = {
    __typename?: 'Sight',
   id: Scalars['String'],
-  title: Scalars['String'],
-  type: Scalars['String'],
-  subtext: Scalars['String'],
-  location: Scalars['String'],
-  long: Scalars['Float'],
-  lat: Scalars['Float'],
+  creationDate: Scalars['String'],
+  title?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  subtext?: Maybe<Scalars['String']>,
+  location?: Maybe<Scalars['String']>,
+  long?: Maybe<Scalars['Float']>,
+  lat?: Maybe<Scalars['Float']>,
   images: Array<Scalars['String']>,
 };
 
 export type SightInput = {
-  id: Scalars['String'],
-  title: Scalars['String'],
-  type: Scalars['String'],
-  subtext: Scalars['String'],
-  location: Scalars['String'],
-  long: Scalars['Float'],
-  lat: Scalars['Float'],
+  title?: Maybe<Scalars['String']>,
+  type?: Maybe<Scalars['String']>,
+  subtext?: Maybe<Scalars['String']>,
+  location?: Maybe<Scalars['String']>,
+  long?: Maybe<Scalars['Float']>,
+  lat?: Maybe<Scalars['Float']>,
   images: Array<Scalars['String']>,
 };
 
 export type User = {
    __typename?: 'User',
   id: Scalars['String'],
-  username: Scalars['String'],
-  email: Scalars['String'],
+  creationDate: Scalars['String'],
+  username?: Maybe<Scalars['String']>,
+  email?: Maybe<Scalars['String']>,
   paymentServiceId?: Maybe<Scalars['String']>,
   gender?: Maybe<Scalars['String']>,
   firstname?: Maybe<Scalars['String']>,
@@ -365,7 +360,7 @@ export type User = {
   streetNumber?: Maybe<Scalars['String']>,
   town?: Maybe<Scalars['String']>,
   postalcode?: Maybe<Scalars['String']>,
-  tokenVersion: Scalars['Float'],
+  tokenVersion?: Maybe<Scalars['Float']>,
   email_verified: Scalars['Boolean'],
 };
 
@@ -383,15 +378,15 @@ export type UserName = {
 };
 
 export type CreateMyBookingMutationVariables = {
-  to: Scalars['Float'],
-  from: Scalars['Float'],
+  arrival: Scalars['String'],
+  departure: Scalars['String'],
   propertyId: Scalars['String']
 };
 
 
 export type CreateMyBookingMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'bookProperty'>
+  & Pick<Mutation, 'createBooking'>
 );
 
 export type CreateProductQueryVariables = {};
@@ -401,18 +396,18 @@ export type CreateProductQuery = (
   { __typename?: 'Query' }
   & { getNewProduct: (
     { __typename?: 'Product' }
-    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'deleted' | 'active'>
+    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'active'>
   ) }
 );
 
-export type SavePropertyMutationVariables = {
+export type CreatePropertyMutationVariables = {
   property: PropertyInput
 };
 
 
-export type SavePropertyMutation = (
+export type CreatePropertyMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'saveProperty'>
+  & Pick<Mutation, 'insertProperty'>
 );
 
 export type SaveRatingMutationVariables = {
@@ -422,17 +417,17 @@ export type SaveRatingMutationVariables = {
 
 export type SaveRatingMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'saveRating'>
+  & Pick<Mutation, 'insertRating'>
 );
 
-export type SaveSightMutationVariables = {
+export type CreateSightMutationVariables = {
   sight: SightInput
 };
 
 
-export type SaveSightMutation = (
+export type CreateSightMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'saveSight'>
+  & Pick<Mutation, 'insertSight'>
 );
 
 export type DeleteBookingMutationVariables = {
@@ -455,14 +450,24 @@ export type DeleteProductMutation = (
   & Pick<Mutation, 'deleteProduct'>
 );
 
-export type AllBookingQueryVariables = {};
+export type DeletePropertyMutationVariables = {
+  id: Scalars['String']
+};
 
 
-export type AllBookingQuery = (
+export type DeletePropertyMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'deleteProperty'>
+);
+
+export type AllBookingsQueryVariables = {};
+
+
+export type AllBookingsQuery = (
   { __typename?: 'Query' }
-  & { allBooking: Maybe<Array<(
+  & { getAllBookings: Maybe<Array<(
     { __typename?: 'Booking' }
-    & Pick<Booking, 'id' | 'from' | 'to' | 'deleted' | 'propertyId'>
+    & Pick<Booking, 'creationDate' | 'id' | 'dateOfArrival' | 'dateOfDeparture' | 'propertyId'>
   )>> }
 );
 
@@ -473,18 +478,18 @@ export type ProductsQuery = (
   { __typename?: 'Query' }
   & { getAllProducts: Maybe<Array<(
     { __typename?: 'Product' }
-    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'deleted' | 'active'>
+    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'active'>
   )>> }
 );
 
-export type PropertiesQueryVariables = {};
+export type GetAllPropertiesQueryVariables = {};
 
 
-export type PropertiesQuery = (
+export type GetAllPropertiesQuery = (
   { __typename?: 'Query' }
-  & { allProperties: Maybe<Array<(
+  & { getAllProperties: Maybe<Array<(
     { __typename?: 'Property' }
-    & Pick<Property, 'id' | 'title' | 'subtext' | 'location' | 'long' | 'lat' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'images'>
+    & Pick<Property, 'id' | 'creationDate' | 'title' | 'subtext' | 'location' | 'long' | 'lat' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'images'>
   )>> }
 );
 
@@ -495,7 +500,7 @@ export type AllRatingsQuery = (
   { __typename?: 'Query' }
   & { getAllRatings: Maybe<Array<(
     { __typename?: 'Rating' }
-    & Pick<Rating, 'id' | 'targettype' | 'targetId' | 'comment' | 'rating' | 'title' | 'userId'>
+    & Pick<Rating, 'id' | 'creationDate' | 'targetId' | 'comment' | 'rating' | 'title' | 'userId'>
   )>> }
 );
 
@@ -504,9 +509,9 @@ export type SightsQueryVariables = {};
 
 export type SightsQuery = (
   { __typename?: 'Query' }
-  & { getSights: Maybe<Array<(
+  & { getAllSights: Maybe<Array<(
     { __typename?: 'Sight' }
-    & Pick<Sight, 'id' | 'title' | 'type' | 'subtext' | 'location' | 'long' | 'lat' | 'images'>
+    & Pick<Sight, 'id' | 'creationDate' | 'title' | 'type' | 'subtext' | 'location' | 'long' | 'lat' | 'images'>
   )>> }
 );
 
@@ -530,25 +535,8 @@ export type MyBookingQuery = (
   { __typename?: 'Query' }
   & { myBooking: Maybe<(
     { __typename?: 'Booking' }
-    & Pick<Booking, 'id' | 'from' | 'to'>
-    & { property: (
-      { __typename?: 'Property' }
-      & Pick<Property, 'id' | 'title' | 'location' | 'long' | 'lat' | 'images' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'subtext'>
-    ) }
+    & Pick<Booking, 'id' | 'dateOfArrival' | 'dateOfDeparture' | 'propertyId'>
   )> }
-);
-
-export type BookingsByPropertyQueryVariables = {
-  propertyId: Scalars['String']
-};
-
-
-export type BookingsByPropertyQuery = (
-  { __typename?: 'Query' }
-  & { activeBookingsForProperty: Maybe<Array<(
-    { __typename?: 'Booking' }
-    & Pick<Booking, 'propertyId' | 'to' | 'from'>
-  )>> }
 );
 
 export type GetProductQueryVariables = {
@@ -560,19 +548,8 @@ export type GetProductQuery = (
   { __typename?: 'Query' }
   & { getProduct: Maybe<(
     { __typename?: 'Product' }
-    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'deleted' | 'active'>
+    & Pick<Product, 'id' | 'title' | 'creationDate' | 'paymentPricePlan' | 'price' | 'minmonth' | 'active'>
   )> }
-);
-
-export type TeaserPropertiesQueryVariables = {};
-
-
-export type TeaserPropertiesQuery = (
-  { __typename?: 'Query' }
-  & { teaserProperties: Maybe<Array<(
-    { __typename?: 'Property' }
-    & Pick<Property, 'id' | 'title' | 'subtext' | 'location' | 'long' | 'lat' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'images'>
-  )>> }
 );
 
 export type GetPropertyQueryVariables = {
@@ -584,7 +561,7 @@ export type GetPropertyQuery = (
   { __typename?: 'Query' }
   & { getProperty: Maybe<(
     { __typename?: 'Property' }
-    & Pick<Property, 'id' | 'title' | 'subtext' | 'location' | 'long' | 'lat' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'images'>
+    & Pick<Property, 'id' | 'creationDate' | 'title' | 'subtext' | 'location' | 'long' | 'lat' | 'beds_adult' | 'beds_kids' | 'beds_tent' | 'images'>
   )> }
 );
 
@@ -597,12 +574,11 @@ export type GetRatingQuery = (
   { __typename?: 'Query' }
   & { getRating: Maybe<(
     { __typename?: 'Rating' }
-    & Pick<Rating, 'id' | 'targettype' | 'targetId' | 'comment' | 'rating' | 'title' | 'userId'>
+    & Pick<Rating, 'id' | 'creationDate' | 'targetId' | 'comment' | 'rating' | 'title' | 'userId'>
   )> }
 );
 
 export type GetRatingValuesByTargetQueryVariables = {
-  targettype: Scalars['String'],
   targetId: Scalars['String']
 };
 
@@ -611,7 +587,7 @@ export type GetRatingValuesByTargetQuery = (
   { __typename?: 'Query' }
   & { getRatingValuesByTarget: Maybe<(
     { __typename?: 'RatingValues' }
-    & Pick<RatingValues, 'targetId' | 'targettype' | 'ratings' | 'ratingValue'>
+    & Pick<RatingValues, 'targetId' | 'ratings' | 'ratingValue'>
   )> }
 );
 
@@ -624,7 +600,7 @@ export type GetSightQuery = (
   { __typename?: 'Query' }
   & { getSight: Maybe<(
     { __typename?: 'Sight' }
-    & Pick<Sight, 'id' | 'title' | 'type' | 'subtext' | 'location' | 'long' | 'lat' | 'images'>
+    & Pick<Sight, 'id' | 'creationDate' | 'title' | 'type' | 'subtext' | 'location' | 'long' | 'lat' | 'images'>
   )> }
 );
 
@@ -635,7 +611,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'email' | 'id' | 'paymentServiceId' | 'gender' | 'firstname' | 'surname' | 'street' | 'streetNumber' | 'postalcode' | 'town'>
+    & Pick<User, 'email' | 'creationDate' | 'id' | 'paymentServiceId' | 'gender' | 'firstname' | 'surname' | 'street' | 'streetNumber' | 'postalcode' | 'town'>
   )> }
 );
 
@@ -686,10 +662,10 @@ export type AddPaymentMethodMutation = (
   & Pick<Mutation, 'addPaymentMethod'>
 );
 
-export type CreatePaymentSerivceCustomerMutationVariables = {};
+export type CreatePaymentCustomerMutationVariables = {};
 
 
-export type CreatePaymentSerivceCustomerMutation = (
+export type CreatePaymentCustomerMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'createPaymentServiceCustomer'>
 );
@@ -726,30 +702,20 @@ export type UpdateProductMutation = (
   & Pick<Mutation, 'updateProduct'>
 );
 
-export type UpdateUserAddressMutationVariables = {
-  useraddress: UserAddress
+export type UpdatePropertyMutationVariables = {
+  property: PropertyInput
 };
 
 
-export type UpdateUserAddressMutation = (
+export type UpdatePropertyMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'updateUserAddress'>
-);
-
-export type UpdateUserNameMutationVariables = {
-  username: UserName
-};
-
-
-export type UpdateUserNameMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Mutation, 'updateUserName'>
+  & Pick<Mutation, 'updateProperty'>
 );
 
 
 export const CreateMyBookingDocument = gql`
-    mutation CreateMyBooking($to: Float!, $from: Float!, $propertyId: String!) {
-  bookProperty(to: $to, from: $from, propertyId: $propertyId)
+    mutation CreateMyBooking($arrival: String!, $departure: String!, $propertyId: String!) {
+  createBooking(arrival: $arrival, departure: $departure, propertyId: $propertyId)
 }
     `;
 export type CreateMyBookingMutationFn = ApolloReactCommon.MutationFunction<CreateMyBookingMutation, CreateMyBookingMutationVariables>;
@@ -767,8 +733,8 @@ export type CreateMyBookingMutationFn = ApolloReactCommon.MutationFunction<Creat
  * @example
  * const [createMyBookingMutation, { data, loading, error }] = useCreateMyBookingMutation({
  *   variables: {
- *      to: // value for 'to'
- *      from: // value for 'from'
+ *      arrival: // value for 'arrival'
+ *      departure: // value for 'departure'
  *      propertyId: // value for 'propertyId'
  *   },
  * });
@@ -788,7 +754,6 @@ export const CreateProductDocument = gql`
     paymentPricePlan
     price
     minmonth
-    deleted
     active
   }
 }
@@ -818,39 +783,39 @@ export function useCreateProductLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type CreateProductQueryHookResult = ReturnType<typeof useCreateProductQuery>;
 export type CreateProductLazyQueryHookResult = ReturnType<typeof useCreateProductLazyQuery>;
 export type CreateProductQueryResult = ApolloReactCommon.QueryResult<CreateProductQuery, CreateProductQueryVariables>;
-export const SavePropertyDocument = gql`
-    mutation saveProperty($property: PropertyInput!) {
-  saveProperty(property: $property)
+export const CreatePropertyDocument = gql`
+    mutation createProperty($property: PropertyInput!) {
+  insertProperty(property: $property)
 }
     `;
-export type SavePropertyMutationFn = ApolloReactCommon.MutationFunction<SavePropertyMutation, SavePropertyMutationVariables>;
+export type CreatePropertyMutationFn = ApolloReactCommon.MutationFunction<CreatePropertyMutation, CreatePropertyMutationVariables>;
 
 /**
- * __useSavePropertyMutation__
+ * __useCreatePropertyMutation__
  *
- * To run a mutation, you first call `useSavePropertyMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSavePropertyMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreatePropertyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePropertyMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [savePropertyMutation, { data, loading, error }] = useSavePropertyMutation({
+ * const [createPropertyMutation, { data, loading, error }] = useCreatePropertyMutation({
  *   variables: {
  *      property: // value for 'property'
  *   },
  * });
  */
-export function useSavePropertyMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SavePropertyMutation, SavePropertyMutationVariables>) {
-        return ApolloReactHooks.useMutation<SavePropertyMutation, SavePropertyMutationVariables>(SavePropertyDocument, baseOptions);
+export function useCreatePropertyMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePropertyMutation, CreatePropertyMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreatePropertyMutation, CreatePropertyMutationVariables>(CreatePropertyDocument, baseOptions);
       }
-export type SavePropertyMutationHookResult = ReturnType<typeof useSavePropertyMutation>;
-export type SavePropertyMutationResult = ApolloReactCommon.MutationResult<SavePropertyMutation>;
-export type SavePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<SavePropertyMutation, SavePropertyMutationVariables>;
+export type CreatePropertyMutationHookResult = ReturnType<typeof useCreatePropertyMutation>;
+export type CreatePropertyMutationResult = ApolloReactCommon.MutationResult<CreatePropertyMutation>;
+export type CreatePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePropertyMutation, CreatePropertyMutationVariables>;
 export const SaveRatingDocument = gql`
     mutation saveRating($rating: RatingInput!) {
-  saveRating(rating: $rating)
+  insertRating(rating: $rating)
 }
     `;
 export type SaveRatingMutationFn = ApolloReactCommon.MutationFunction<SaveRatingMutation, SaveRatingMutationVariables>;
@@ -878,39 +843,39 @@ export function useSaveRatingMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type SaveRatingMutationHookResult = ReturnType<typeof useSaveRatingMutation>;
 export type SaveRatingMutationResult = ApolloReactCommon.MutationResult<SaveRatingMutation>;
 export type SaveRatingMutationOptions = ApolloReactCommon.BaseMutationOptions<SaveRatingMutation, SaveRatingMutationVariables>;
-export const SaveSightDocument = gql`
-    mutation saveSight($sight: SightInput!) {
-  saveSight(sight: $sight)
+export const CreateSightDocument = gql`
+    mutation createSight($sight: SightInput!) {
+  insertSight(sight: $sight)
 }
     `;
-export type SaveSightMutationFn = ApolloReactCommon.MutationFunction<SaveSightMutation, SaveSightMutationVariables>;
+export type CreateSightMutationFn = ApolloReactCommon.MutationFunction<CreateSightMutation, CreateSightMutationVariables>;
 
 /**
- * __useSaveSightMutation__
+ * __useCreateSightMutation__
  *
- * To run a mutation, you first call `useSaveSightMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSaveSightMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateSightMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSightMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [saveSightMutation, { data, loading, error }] = useSaveSightMutation({
+ * const [createSightMutation, { data, loading, error }] = useCreateSightMutation({
  *   variables: {
  *      sight: // value for 'sight'
  *   },
  * });
  */
-export function useSaveSightMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SaveSightMutation, SaveSightMutationVariables>) {
-        return ApolloReactHooks.useMutation<SaveSightMutation, SaveSightMutationVariables>(SaveSightDocument, baseOptions);
+export function useCreateSightMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateSightMutation, CreateSightMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateSightMutation, CreateSightMutationVariables>(CreateSightDocument, baseOptions);
       }
-export type SaveSightMutationHookResult = ReturnType<typeof useSaveSightMutation>;
-export type SaveSightMutationResult = ApolloReactCommon.MutationResult<SaveSightMutation>;
-export type SaveSightMutationOptions = ApolloReactCommon.BaseMutationOptions<SaveSightMutation, SaveSightMutationVariables>;
+export type CreateSightMutationHookResult = ReturnType<typeof useCreateSightMutation>;
+export type CreateSightMutationResult = ApolloReactCommon.MutationResult<CreateSightMutation>;
+export type CreateSightMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateSightMutation, CreateSightMutationVariables>;
 export const DeleteBookingDocument = gql`
     mutation deleteBooking($bookingId: String!) {
-  deleteBooking(bookingId: $bookingId)
+  deleteBooking(id: $bookingId)
 }
     `;
 export type DeleteBookingMutationFn = ApolloReactCommon.MutationFunction<DeleteBookingMutation, DeleteBookingMutationVariables>;
@@ -968,42 +933,72 @@ export function useDeleteProductMutation(baseOptions?: ApolloReactHooks.Mutation
 export type DeleteProductMutationHookResult = ReturnType<typeof useDeleteProductMutation>;
 export type DeleteProductMutationResult = ApolloReactCommon.MutationResult<DeleteProductMutation>;
 export type DeleteProductMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteProductMutation, DeleteProductMutationVariables>;
-export const AllBookingDocument = gql`
-    query allBooking {
-  allBooking {
+export const DeletePropertyDocument = gql`
+    mutation deleteProperty($id: String!) {
+  deleteProperty(id: $id)
+}
+    `;
+export type DeletePropertyMutationFn = ApolloReactCommon.MutationFunction<DeletePropertyMutation, DeletePropertyMutationVariables>;
+
+/**
+ * __useDeletePropertyMutation__
+ *
+ * To run a mutation, you first call `useDeletePropertyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePropertyMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePropertyMutation, { data, loading, error }] = useDeletePropertyMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePropertyMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeletePropertyMutation, DeletePropertyMutationVariables>) {
+        return ApolloReactHooks.useMutation<DeletePropertyMutation, DeletePropertyMutationVariables>(DeletePropertyDocument, baseOptions);
+      }
+export type DeletePropertyMutationHookResult = ReturnType<typeof useDeletePropertyMutation>;
+export type DeletePropertyMutationResult = ApolloReactCommon.MutationResult<DeletePropertyMutation>;
+export type DeletePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<DeletePropertyMutation, DeletePropertyMutationVariables>;
+export const AllBookingsDocument = gql`
+    query allBookings {
+  getAllBookings {
+    creationDate
     id
-    from
-    to
-    deleted
+    dateOfArrival
+    dateOfDeparture
     propertyId
   }
 }
     `;
 
 /**
- * __useAllBookingQuery__
+ * __useAllBookingsQuery__
  *
- * To run a query within a React component, call `useAllBookingQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllBookingQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useAllBookingsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllBookingsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useAllBookingQuery({
+ * const { data, loading, error } = useAllBookingsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useAllBookingQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllBookingQuery, AllBookingQueryVariables>) {
-        return ApolloReactHooks.useQuery<AllBookingQuery, AllBookingQueryVariables>(AllBookingDocument, baseOptions);
+export function useAllBookingsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<AllBookingsQuery, AllBookingsQueryVariables>) {
+        return ApolloReactHooks.useQuery<AllBookingsQuery, AllBookingsQueryVariables>(AllBookingsDocument, baseOptions);
       }
-export function useAllBookingLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllBookingQuery, AllBookingQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<AllBookingQuery, AllBookingQueryVariables>(AllBookingDocument, baseOptions);
+export function useAllBookingsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<AllBookingsQuery, AllBookingsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<AllBookingsQuery, AllBookingsQueryVariables>(AllBookingsDocument, baseOptions);
         }
-export type AllBookingQueryHookResult = ReturnType<typeof useAllBookingQuery>;
-export type AllBookingLazyQueryHookResult = ReturnType<typeof useAllBookingLazyQuery>;
-export type AllBookingQueryResult = ApolloReactCommon.QueryResult<AllBookingQuery, AllBookingQueryVariables>;
+export type AllBookingsQueryHookResult = ReturnType<typeof useAllBookingsQuery>;
+export type AllBookingsLazyQueryHookResult = ReturnType<typeof useAllBookingsLazyQuery>;
+export type AllBookingsQueryResult = ApolloReactCommon.QueryResult<AllBookingsQuery, AllBookingsQueryVariables>;
 export const ProductsDocument = gql`
     query Products {
   getAllProducts {
@@ -1013,7 +1008,6 @@ export const ProductsDocument = gql`
     paymentPricePlan
     price
     minmonth
-    deleted
     active
   }
 }
@@ -1043,10 +1037,11 @@ export function useProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHoo
 export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>;
 export type ProductsLazyQueryHookResult = ReturnType<typeof useProductsLazyQuery>;
 export type ProductsQueryResult = ApolloReactCommon.QueryResult<ProductsQuery, ProductsQueryVariables>;
-export const PropertiesDocument = gql`
-    query Properties {
-  allProperties {
+export const GetAllPropertiesDocument = gql`
+    query getAllProperties {
+  getAllProperties {
     id
+    creationDate
     title
     subtext
     location
@@ -1061,34 +1056,34 @@ export const PropertiesDocument = gql`
     `;
 
 /**
- * __usePropertiesQuery__
+ * __useGetAllPropertiesQuery__
  *
- * To run a query within a React component, call `usePropertiesQuery` and pass it any options that fit your needs.
- * When your component renders, `usePropertiesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useGetAllPropertiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllPropertiesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = usePropertiesQuery({
+ * const { data, loading, error } = useGetAllPropertiesQuery({
  *   variables: {
  *   },
  * });
  */
-export function usePropertiesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PropertiesQuery, PropertiesQueryVariables>) {
-        return ApolloReactHooks.useQuery<PropertiesQuery, PropertiesQueryVariables>(PropertiesDocument, baseOptions);
+export function useGetAllPropertiesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetAllPropertiesQuery, GetAllPropertiesQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetAllPropertiesQuery, GetAllPropertiesQueryVariables>(GetAllPropertiesDocument, baseOptions);
       }
-export function usePropertiesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PropertiesQuery, PropertiesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<PropertiesQuery, PropertiesQueryVariables>(PropertiesDocument, baseOptions);
+export function useGetAllPropertiesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetAllPropertiesQuery, GetAllPropertiesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetAllPropertiesQuery, GetAllPropertiesQueryVariables>(GetAllPropertiesDocument, baseOptions);
         }
-export type PropertiesQueryHookResult = ReturnType<typeof usePropertiesQuery>;
-export type PropertiesLazyQueryHookResult = ReturnType<typeof usePropertiesLazyQuery>;
-export type PropertiesQueryResult = ApolloReactCommon.QueryResult<PropertiesQuery, PropertiesQueryVariables>;
+export type GetAllPropertiesQueryHookResult = ReturnType<typeof useGetAllPropertiesQuery>;
+export type GetAllPropertiesLazyQueryHookResult = ReturnType<typeof useGetAllPropertiesLazyQuery>;
+export type GetAllPropertiesQueryResult = ApolloReactCommon.QueryResult<GetAllPropertiesQuery, GetAllPropertiesQueryVariables>;
 export const AllRatingsDocument = gql`
     query AllRatings {
   getAllRatings {
     id
-    targettype
+    creationDate
     targetId
     comment
     rating
@@ -1124,8 +1119,9 @@ export type AllRatingsLazyQueryHookResult = ReturnType<typeof useAllRatingsLazyQ
 export type AllRatingsQueryResult = ApolloReactCommon.QueryResult<AllRatingsQuery, AllRatingsQueryVariables>;
 export const SightsDocument = gql`
     query Sights {
-  getSights {
+  getAllSights {
     id
+    creationDate
     title
     type
     subtext
@@ -1200,20 +1196,9 @@ export const MyBookingDocument = gql`
     query MyBooking {
   myBooking {
     id
-    from
-    to
-    property {
-      id
-      title
-      location
-      long
-      lat
-      images
-      beds_adult
-      beds_kids
-      beds_tent
-      subtext
-    }
+    dateOfArrival
+    dateOfDeparture
+    propertyId
   }
 }
     `;
@@ -1242,41 +1227,6 @@ export function useMyBookingLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHo
 export type MyBookingQueryHookResult = ReturnType<typeof useMyBookingQuery>;
 export type MyBookingLazyQueryHookResult = ReturnType<typeof useMyBookingLazyQuery>;
 export type MyBookingQueryResult = ApolloReactCommon.QueryResult<MyBookingQuery, MyBookingQueryVariables>;
-export const BookingsByPropertyDocument = gql`
-    query BookingsByProperty($propertyId: String!) {
-  activeBookingsForProperty(propertyId: $propertyId) {
-    propertyId
-    to
-    from
-  }
-}
-    `;
-
-/**
- * __useBookingsByPropertyQuery__
- *
- * To run a query within a React component, call `useBookingsByPropertyQuery` and pass it any options that fit your needs.
- * When your component renders, `useBookingsByPropertyQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useBookingsByPropertyQuery({
- *   variables: {
- *      propertyId: // value for 'propertyId'
- *   },
- * });
- */
-export function useBookingsByPropertyQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<BookingsByPropertyQuery, BookingsByPropertyQueryVariables>) {
-        return ApolloReactHooks.useQuery<BookingsByPropertyQuery, BookingsByPropertyQueryVariables>(BookingsByPropertyDocument, baseOptions);
-      }
-export function useBookingsByPropertyLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<BookingsByPropertyQuery, BookingsByPropertyQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<BookingsByPropertyQuery, BookingsByPropertyQueryVariables>(BookingsByPropertyDocument, baseOptions);
-        }
-export type BookingsByPropertyQueryHookResult = ReturnType<typeof useBookingsByPropertyQuery>;
-export type BookingsByPropertyLazyQueryHookResult = ReturnType<typeof useBookingsByPropertyLazyQuery>;
-export type BookingsByPropertyQueryResult = ApolloReactCommon.QueryResult<BookingsByPropertyQuery, BookingsByPropertyQueryVariables>;
 export const GetProductDocument = gql`
     query getProduct($id: String!) {
   getProduct(id: $id) {
@@ -1286,7 +1236,6 @@ export const GetProductDocument = gql`
     paymentPricePlan
     price
     minmonth
-    deleted
     active
   }
 }
@@ -1317,51 +1266,11 @@ export function useGetProductLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type GetProductQueryHookResult = ReturnType<typeof useGetProductQuery>;
 export type GetProductLazyQueryHookResult = ReturnType<typeof useGetProductLazyQuery>;
 export type GetProductQueryResult = ApolloReactCommon.QueryResult<GetProductQuery, GetProductQueryVariables>;
-export const TeaserPropertiesDocument = gql`
-    query TeaserProperties {
-  teaserProperties {
-    id
-    title
-    subtext
-    location
-    long
-    lat
-    beds_adult
-    beds_kids
-    beds_tent
-    images
-  }
-}
-    `;
-
-/**
- * __useTeaserPropertiesQuery__
- *
- * To run a query within a React component, call `useTeaserPropertiesQuery` and pass it any options that fit your needs.
- * When your component renders, `useTeaserPropertiesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useTeaserPropertiesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useTeaserPropertiesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TeaserPropertiesQuery, TeaserPropertiesQueryVariables>) {
-        return ApolloReactHooks.useQuery<TeaserPropertiesQuery, TeaserPropertiesQueryVariables>(TeaserPropertiesDocument, baseOptions);
-      }
-export function useTeaserPropertiesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TeaserPropertiesQuery, TeaserPropertiesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<TeaserPropertiesQuery, TeaserPropertiesQueryVariables>(TeaserPropertiesDocument, baseOptions);
-        }
-export type TeaserPropertiesQueryHookResult = ReturnType<typeof useTeaserPropertiesQuery>;
-export type TeaserPropertiesLazyQueryHookResult = ReturnType<typeof useTeaserPropertiesLazyQuery>;
-export type TeaserPropertiesQueryResult = ApolloReactCommon.QueryResult<TeaserPropertiesQuery, TeaserPropertiesQueryVariables>;
 export const GetPropertyDocument = gql`
     query getProperty($id: String!) {
   getProperty(id: $id) {
     id
+    creationDate
     title
     subtext
     location
@@ -1404,7 +1313,7 @@ export const GetRatingDocument = gql`
     query getRating($id: String!) {
   getRating(id: $id) {
     id
-    targettype
+    creationDate
     targetId
     comment
     rating
@@ -1440,10 +1349,9 @@ export type GetRatingQueryHookResult = ReturnType<typeof useGetRatingQuery>;
 export type GetRatingLazyQueryHookResult = ReturnType<typeof useGetRatingLazyQuery>;
 export type GetRatingQueryResult = ApolloReactCommon.QueryResult<GetRatingQuery, GetRatingQueryVariables>;
 export const GetRatingValuesByTargetDocument = gql`
-    query getRatingValuesByTarget($targettype: String!, $targetId: String!) {
-  getRatingValuesByTarget(targettype: $targettype, targetId: $targetId) {
+    query getRatingValuesByTarget($targetId: String!) {
+  getRatingValuesByTarget(targetId: $targetId) {
     targetId
-    targettype
     ratings
     ratingValue
   }
@@ -1462,7 +1370,6 @@ export const GetRatingValuesByTargetDocument = gql`
  * @example
  * const { data, loading, error } = useGetRatingValuesByTargetQuery({
  *   variables: {
- *      targettype: // value for 'targettype'
  *      targetId: // value for 'targetId'
  *   },
  * });
@@ -1480,6 +1387,7 @@ export const GetSightDocument = gql`
     query getSight($id: String!) {
   getSight(id: $id) {
     id
+    creationDate
     title
     type
     subtext
@@ -1520,6 +1428,7 @@ export const MeDocument = gql`
     query Me {
   me {
     email
+    creationDate
     id
     paymentServiceId
     gender
@@ -1687,35 +1596,35 @@ export function useAddPaymentMethodMutation(baseOptions?: ApolloReactHooks.Mutat
 export type AddPaymentMethodMutationHookResult = ReturnType<typeof useAddPaymentMethodMutation>;
 export type AddPaymentMethodMutationResult = ApolloReactCommon.MutationResult<AddPaymentMethodMutation>;
 export type AddPaymentMethodMutationOptions = ApolloReactCommon.BaseMutationOptions<AddPaymentMethodMutation, AddPaymentMethodMutationVariables>;
-export const CreatePaymentSerivceCustomerDocument = gql`
-    mutation createPaymentSerivceCustomer {
+export const CreatePaymentCustomerDocument = gql`
+    mutation createPaymentCustomer {
   createPaymentServiceCustomer
 }
     `;
-export type CreatePaymentSerivceCustomerMutationFn = ApolloReactCommon.MutationFunction<CreatePaymentSerivceCustomerMutation, CreatePaymentSerivceCustomerMutationVariables>;
+export type CreatePaymentCustomerMutationFn = ApolloReactCommon.MutationFunction<CreatePaymentCustomerMutation, CreatePaymentCustomerMutationVariables>;
 
 /**
- * __useCreatePaymentSerivceCustomerMutation__
+ * __useCreatePaymentCustomerMutation__
  *
- * To run a mutation, you first call `useCreatePaymentSerivceCustomerMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePaymentSerivceCustomerMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreatePaymentCustomerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePaymentCustomerMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createPaymentSerivceCustomerMutation, { data, loading, error }] = useCreatePaymentSerivceCustomerMutation({
+ * const [createPaymentCustomerMutation, { data, loading, error }] = useCreatePaymentCustomerMutation({
  *   variables: {
  *   },
  * });
  */
-export function useCreatePaymentSerivceCustomerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePaymentSerivceCustomerMutation, CreatePaymentSerivceCustomerMutationVariables>) {
-        return ApolloReactHooks.useMutation<CreatePaymentSerivceCustomerMutation, CreatePaymentSerivceCustomerMutationVariables>(CreatePaymentSerivceCustomerDocument, baseOptions);
+export function useCreatePaymentCustomerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePaymentCustomerMutation, CreatePaymentCustomerMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreatePaymentCustomerMutation, CreatePaymentCustomerMutationVariables>(CreatePaymentCustomerDocument, baseOptions);
       }
-export type CreatePaymentSerivceCustomerMutationHookResult = ReturnType<typeof useCreatePaymentSerivceCustomerMutation>;
-export type CreatePaymentSerivceCustomerMutationResult = ApolloReactCommon.MutationResult<CreatePaymentSerivceCustomerMutation>;
-export type CreatePaymentSerivceCustomerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePaymentSerivceCustomerMutation, CreatePaymentSerivceCustomerMutationVariables>;
+export type CreatePaymentCustomerMutationHookResult = ReturnType<typeof useCreatePaymentCustomerMutation>;
+export type CreatePaymentCustomerMutationResult = ApolloReactCommon.MutationResult<CreatePaymentCustomerMutation>;
+export type CreatePaymentCustomerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreatePaymentCustomerMutation, CreatePaymentCustomerMutationVariables>;
 export const SubscribeToPricePlanDocument = gql`
     mutation subscribeToPricePlan($priceplan: String!) {
   subscribeToPricePlan(priceplan: $priceplan)
@@ -1808,63 +1717,33 @@ export function useUpdateProductMutation(baseOptions?: ApolloReactHooks.Mutation
 export type UpdateProductMutationHookResult = ReturnType<typeof useUpdateProductMutation>;
 export type UpdateProductMutationResult = ApolloReactCommon.MutationResult<UpdateProductMutation>;
 export type UpdateProductMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateProductMutation, UpdateProductMutationVariables>;
-export const UpdateUserAddressDocument = gql`
-    mutation updateUserAddress($useraddress: UserAddress!) {
-  updateUserAddress(useraddress: $useraddress)
+export const UpdatePropertyDocument = gql`
+    mutation updateProperty($property: PropertyInput!) {
+  updateProperty(property: $property)
 }
     `;
-export type UpdateUserAddressMutationFn = ApolloReactCommon.MutationFunction<UpdateUserAddressMutation, UpdateUserAddressMutationVariables>;
+export type UpdatePropertyMutationFn = ApolloReactCommon.MutationFunction<UpdatePropertyMutation, UpdatePropertyMutationVariables>;
 
 /**
- * __useUpdateUserAddressMutation__
+ * __useUpdatePropertyMutation__
  *
- * To run a mutation, you first call `useUpdateUserAddressMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateUserAddressMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdatePropertyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePropertyMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateUserAddressMutation, { data, loading, error }] = useUpdateUserAddressMutation({
+ * const [updatePropertyMutation, { data, loading, error }] = useUpdatePropertyMutation({
  *   variables: {
- *      useraddress: // value for 'useraddress'
+ *      property: // value for 'property'
  *   },
  * });
  */
-export function useUpdateUserAddressMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateUserAddressMutation, UpdateUserAddressMutationVariables>) {
-        return ApolloReactHooks.useMutation<UpdateUserAddressMutation, UpdateUserAddressMutationVariables>(UpdateUserAddressDocument, baseOptions);
+export function useUpdatePropertyMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdatePropertyMutation, UpdatePropertyMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdatePropertyMutation, UpdatePropertyMutationVariables>(UpdatePropertyDocument, baseOptions);
       }
-export type UpdateUserAddressMutationHookResult = ReturnType<typeof useUpdateUserAddressMutation>;
-export type UpdateUserAddressMutationResult = ApolloReactCommon.MutationResult<UpdateUserAddressMutation>;
-export type UpdateUserAddressMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserAddressMutation, UpdateUserAddressMutationVariables>;
-export const UpdateUserNameDocument = gql`
-    mutation updateUserName($username: UserName!) {
-  updateUserName(username: $username)
-}
-    `;
-export type UpdateUserNameMutationFn = ApolloReactCommon.MutationFunction<UpdateUserNameMutation, UpdateUserNameMutationVariables>;
-
-/**
- * __useUpdateUserNameMutation__
- *
- * To run a mutation, you first call `useUpdateUserNameMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateUserNameMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateUserNameMutation, { data, loading, error }] = useUpdateUserNameMutation({
- *   variables: {
- *      username: // value for 'username'
- *   },
- * });
- */
-export function useUpdateUserNameMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateUserNameMutation, UpdateUserNameMutationVariables>) {
-        return ApolloReactHooks.useMutation<UpdateUserNameMutation, UpdateUserNameMutationVariables>(UpdateUserNameDocument, baseOptions);
-      }
-export type UpdateUserNameMutationHookResult = ReturnType<typeof useUpdateUserNameMutation>;
-export type UpdateUserNameMutationResult = ApolloReactCommon.MutationResult<UpdateUserNameMutation>;
-export type UpdateUserNameMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateUserNameMutation, UpdateUserNameMutationVariables>;
+export type UpdatePropertyMutationHookResult = ReturnType<typeof useUpdatePropertyMutation>;
+export type UpdatePropertyMutationResult = ApolloReactCommon.MutationResult<UpdatePropertyMutation>;
+export type UpdatePropertyMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdatePropertyMutation, UpdatePropertyMutationVariables>;

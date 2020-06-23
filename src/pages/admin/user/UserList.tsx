@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTeaserPropertiesQuery, useSightsQuery, useUsersQuery} from '../../../generated/graphql'
+import { useUsersQuery} from '../../../generated/graphql'
 import { TableBody, Table, Container, Button } from '@material-ui/core';
 import { LoadingAnimation } from '../../pageframe/global/Messages/LoadingAnimation';
 import { ErrorMessage } from '../../pageframe/global/Messages/ErrorMessage';
@@ -54,7 +54,7 @@ export const UserList: React.FC<Props> = (props) => {
                                 onEditClicked={onEntityEdit} 
                                 onDeletClicked={onEntityDelete} 
                                 id={x.id}
-                                title={x.email}
+                                title={x.email || ""}
                                 tagone={""}
                                 tagtwo={""}
                                 tagthree={""} />

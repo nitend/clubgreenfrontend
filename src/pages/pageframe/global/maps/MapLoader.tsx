@@ -1,5 +1,5 @@
 import React from "react";
-import { useTeaserPropertiesQuery } from "../../../../generated/graphql";
+import { useGetAllPropertiesQuery } from "../../../../generated/graphql";
 import { LoadingAnimation } from "../Messages/LoadingAnimation";
 import { MapView } from "./MapView";
 import { ErrorMessage } from "../Messages/ErrorMessage";
@@ -9,15 +9,15 @@ interface Props {
 }
 
 export const MapLoader: React.FC<Props> = () => {
-    const {data, loading, error} = useTeaserPropertiesQuery()
+    const {data, loading, error} = useGetAllPropertiesQuery()
 
     if(loading){ 
 
     }
 
-    if(data && data.teaserProperties){
+    if(data && data.getAllProperties){
         return (
-            <MapView properties={data.teaserProperties} height={"400px"} sights={[]}/>
+            <MapView properties={data.getAllProperties} height={"400px"} sights={[]}/>
         )
     }
 

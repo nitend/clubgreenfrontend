@@ -53,10 +53,10 @@ export const MyBooking:  React.FC<Props> = () => {
 
    const setBooking = (data: MyBookingQuery | undefined) => {
     const myBooking = data?.myBooking;
-    if(myBooking && myBooking.from && myBooking.to && myBooking.property){
-      setArrivalDate(moment(myBooking.from));
-      setDepartureDate(moment(myBooking.to))
-      setSelectedPropterty(myBooking.property)
+    if(myBooking && myBooking.dateOfArrival && myBooking.dateOfDeparture && myBooking.propertyId){
+      setArrivalDate(moment(myBooking.dateOfArrival));
+      setDepartureDate(moment(myBooking.dateOfDeparture))
+      setSelectedPropterty(myBooking.propertyId)
       setIsActive(true);
     } else {
       clearBookingView()
@@ -104,9 +104,9 @@ export const MyBooking:  React.FC<Props> = () => {
         const result = await Booking(
           { 
             variables: {
-                from: arrivalDate.valueOf(),
-                to: departureDate.valueOf(),
-                propertyId: selectedProperty.id
+                arrival: arrivalDate.toISOString(),
+                departure: departureDate.toISOString(),
+                propertyId: selectedProperty
             }
           })
           if(result){
@@ -133,7 +133,7 @@ export const MyBooking:  React.FC<Props> = () => {
                     Dein nächster Ausflug:
                     </Typography>
                     </div>
-                    <TravelDatesPicker propertyId={selectedProperty?.id} />
+                    <TravelDatesPicker propertyId={selectedProperty || "" } />
                   
                   <Grid container spacing={4} alignItems="flex-end">
                     <Grid item xs={12} sm>

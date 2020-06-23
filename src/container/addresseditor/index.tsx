@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Address, AddressForm } from "../../components/addressform";
-import { useMeQuery, useUpdateUserAddressMutation } from "../../generated/graphql";
+import { useMeQuery} from "../../generated/graphql";
 import { ErrorMessage } from "../../pages/pageframe/global/Messages/ErrorMessage";
 import { LoadingAnimation } from "../../pages/pageframe/global/Messages/LoadingAnimation";
 import { SuccessMessage } from "../../pages/pageframe/global/Messages/SucessMessage";
@@ -12,8 +12,6 @@ interface Props {
 export const AddressEditor: React.FC<Props> = (props) => {
 
     const {data, loading, error} = useMeQuery();
-    const [useraddress] = useUpdateUserAddressMutation();
-
     const [addressUpdated, setaddressUpdated] = useState(false)
 
     if(error){
@@ -23,17 +21,21 @@ export const AddressEditor: React.FC<Props> = (props) => {
     const handleSaveAddress = async (address: Address) => {
 
         console.log("onSubmit :"+ JSON.stringify(address))
-       const result = await useraddress({
+       /* TODO
+        const result = await useraddress({
             variables: {
                 useraddress: address
             }
         })
+        
         if(result){
             setaddressUpdated(true)
-            props.onDone() 
+             
         } else {
             console.log("onSubmit : false")
         }
+        */
+       props.onDone()
     }
 
     if(data && data.me){

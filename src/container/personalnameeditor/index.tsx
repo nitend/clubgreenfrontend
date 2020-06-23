@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMeQuery, useUpdateUserNameMutation } from "../../generated/graphql";
+import { useMeQuery} from "../../generated/graphql";
 import { ErrorMessage } from "../../pages/pageframe/global/Messages/ErrorMessage";
 import { NameForm, NameData } from "../../components/nameform";
 import { LoadingAnimation } from "../../pages/pageframe/global/Messages/LoadingAnimation";
@@ -12,7 +12,6 @@ interface Props {
 export const PersonalNameEditor: React.FC<Props> = (props) => {
 
     const {data, loading, error} = useMeQuery();
-    const [username] = useUpdateUserNameMutation();
     const [showSuccess, setshowSuccess] = useState(false)
     const [showError, setshowError] = useState(false)
 
@@ -23,6 +22,7 @@ export const PersonalNameEditor: React.FC<Props> = (props) => {
     const handleSaveName = async (name: NameData) => {
 
         console.log("submit namedata")
+        /* TODO 
         const result = await username({
                 variables: {
                     username: name
@@ -30,11 +30,13 @@ export const PersonalNameEditor: React.FC<Props> = (props) => {
         })
         if(result){
             setshowSuccess(true);
-            props.onDone()
+            
         } else {
             setshowError(true);
         }
         console.log("submit end")
+        */
+        props.onDone()
     }
 
     if(data && data.me){

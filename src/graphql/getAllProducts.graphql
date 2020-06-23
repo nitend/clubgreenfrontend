@@ -6,7 +6,6 @@ query Products{
         paymentPricePlan,       
         price,
         minmonth,
-        deleted,
         active  
     }
 }

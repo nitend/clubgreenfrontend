@@ -25,7 +25,7 @@ export const OrderFinish: React.FC<Props> = (props) => {
         if(result && context.product){
            const result2 = subscripe({
                 variables: {
-                    priceplan: context.product?.paymentPricePlan
+                    priceplan: context.product?.paymentPricePlan || ""
                 }
             })
             if(result2){

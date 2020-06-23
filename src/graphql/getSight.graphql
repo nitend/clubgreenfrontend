@@ -1,6 +1,7 @@
 query getSight ($id: String!) {
     getSight (id: $id) {
         id,
+        creationDate,
         title,
         type,
         subtext,

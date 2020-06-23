@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAllBookingQuery} from '../../../generated/graphql'
+import { useAllBookingsQuery} from '../../../generated/graphql'
 import { TableBody, Table, Container, Button } from '@material-ui/core';
 import { LoadingAnimation } from '../../pageframe/global/Messages/LoadingAnimation';
 import { ErrorMessage } from '../../pageframe/global/Messages/ErrorMessage';
@@ -11,7 +11,7 @@ interface Props {
 
 export const BookingList: React.FC<Props> = (props) => {
 
-    const {data, loading, error} = useAllBookingQuery();
+    const {data, loading, error} = useAllBookingsQuery();
 
     if(loading){
         return (
@@ -38,12 +38,17 @@ export const BookingList: React.FC<Props> = (props) => {
         // onEntityEdit(0);
     } 
 
-    if(data && data.allBooking){
+    if(data && data.getAllBookings){
         return(
             <Container>
                 <Table>      
                     <TableBody>
-                        {data?.allBooking.map(x => {
+                        {data?.getAllBookings.map(x => {
+                        
+                        const arrival = x.dateOfArrival ? x.dateOfArrival : ""
+                        const departure = x.dateOfDeparture ? x.dateOfDeparture : ""
+
+
                         return (              
                             <ListItem
                                 key={x.id} 
@@ -51,8 +56,8 @@ export const BookingList: React.FC<Props> = (props) => {
                                 onDeletClicked={onEntityDelete} 
                                 id={x.id+""}
                                 title={x.propertyId + ""}
-                                tagone={(new Date(x.from)).toUTCString()}
-                                tagtwo={(new Date(x.to)).toUTCString()}
+                                tagone={(new Date(arrival)).toUTCString()}
+                                tagtwo={(new Date(departure)).toUTCString()}
                                 tagthree={""} />
                             )                
                         })}

@@ -1,20 +1,8 @@
 query MyBooking{
     myBooking {
         id,
-        from,
-        to,
-        property { 
-            id
-           title,
-           location,
-           long,
-           lat,
-           images,
-           beds_adult,
-           beds_kids,
-           beds_tent,
-           subtext
-        }
+        dateOfArrival,
+        dateOfDeparture,
+        propertyId,
     }
-
 }

@@ -6,7 +6,6 @@ query getProduct ($id: String!) {
         paymentPricePlan,       
         price,
         minmonth,
-        deleted,
         active    
     }
 }
