@@ -34,8 +34,9 @@ export const App: React.FC<Props> = () => {
     }, [])
 
     if(failed){
-        return (         
-            <ErrorMessage error={failed}  show={true}/>   
+        return (
+        
+                <ErrorMessage error={failed}  show={true}/>   
         );
     }
 
@@ -45,7 +46,8 @@ export const App: React.FC<Props> = () => {
         );
     }
 
-    return <Routes serverConnected={true}/>
+    return (<div>test</div> )
+    // <Routes serverConnected={true}/>
 }
 
 
