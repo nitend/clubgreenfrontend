@@ -1,5 +1,4 @@
-import React, { ReactNodeArray, useContext, useEffect, useState } from "react";
-import { CheckoutContext } from "../../context/checkoutcontext/CheckoutContext";
+import React, { ReactNodeArray, useContext} from "react";
 import styles from "./CheckOutFlow.module.css"
 import { CheckOutNavigation } from "../../components/checkoutnavigation/CheckOutNavigation";
 import { CheckoutStepContext } from "../../context/checkoutcontext/CheckoutStepContext";
@@ -14,7 +13,7 @@ interface Props {
 
 export const CheckOutFlow: React.FC<Props> = (props) => {
     const children = props.children;
-    const {step, setstep} = useContext(CheckoutStepContext)
+    const {step} = useContext(CheckoutStepContext)
 
 
    return (

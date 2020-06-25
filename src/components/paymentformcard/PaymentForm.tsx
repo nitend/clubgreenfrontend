@@ -1,11 +1,10 @@
 
 import React, { useState, useContext } from "react";
-import { CardElement, useStripe, useElements, CardCvcElement, CardNumberElement, CardExpiryElement} from "@stripe/react-stripe-js";
+import { useStripe, useElements, CardCvcElement, CardNumberElement, CardExpiryElement} from "@stripe/react-stripe-js";
 import { Button } from "@material-ui/core";
 import { ErrorMessage } from "../../pages/pageframe/global/Messages/ErrorMessage";
 import { CheckoutContext } from "../../context/checkoutcontext/CheckoutContext";
 import styles from "./PaymentForm.module.css"
-import { CheckoutStepContext } from "../../context/checkoutcontext/CheckoutStepContext";
 
 
 interface Props {
@@ -36,8 +35,6 @@ export const PaymentForm: React.FC<Props> = (props) => {
     const context = useContext(CheckoutContext);
 
     const [error, seterror] = useState()
-    const [success, setsuccess] = useState()
-
 
     const handleSubmit = async (event: React.FormEvent) => {
         // Block native form submission.

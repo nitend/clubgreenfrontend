@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useGetProductQuery, Product, useUpdateProductMutation, useCreateProductQuery} from '../../../generated/graphql'
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { EditNewProperty } from './EditNewProperty';
 import { EditProperty } from './EditProperty';
@@ -13,7 +12,7 @@ export const ProductEditor: React.FC<Props> = (props) => {
 
     const { id } = useParams()
  
-    if(id == "new"){
+    if(id === "new"){
         return (<EditNewProperty></EditNewProperty>)
     } else {
         if(id){

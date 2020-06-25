@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useGetProductQuery, Product, useUpdateProductMutation, useCreateProductQuery} from '../../../generated/graphql'
-import { useParams } from 'react-router-dom';
+import { useGetProductQuery, Product, useUpdateProductMutation} from '../../../generated/graphql'
 import { Editor } from '../form/Editor';
 import { MessageView } from '../../pageframe/global/Messages/MessageView';
 import { LoadingAnimation } from '../../pageframe/global/Messages/LoadingAnimation';
 import { ErrorMessage } from '../../pageframe/global/Messages/ErrorMessage';
-import { formatProduct, newProduct } from './ProductObject';
+import { formatProduct} from './ProductObject';
 import { PROPERTY_IMAGE_UPLOAD_URL } from '../../../config';
 
 

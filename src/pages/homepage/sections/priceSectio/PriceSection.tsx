@@ -14,7 +14,7 @@ interface Props {
 
 export const PriceSection: React.FC<Props> = () => {
 
-    const {data, loading, error} = useProductsQuery()
+    const {data} = useProductsQuery()
 
     
     if(data && data.getAllProducts){

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { MyBooking } from './myBooking/MyBooking';
 import { PropertyList } from './propertyList/PropertyList';
 import { BookingContext } from './BookingContext';
-import { Property } from '../../generated/graphql';
 import { Moment } from 'moment';
 import { BgContainer } from '../pageframe/global/StyledComponents';
 

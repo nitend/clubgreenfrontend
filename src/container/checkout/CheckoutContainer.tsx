@@ -1,12 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
-import { CheckoutContext, CheckoutContextProvider } from "../../context/checkoutcontext/CheckoutContext";
+import React, { useContext} from "react";
+import { CheckoutContext} from "../../context/checkoutcontext/CheckoutContext";
 import { CheckOutFlow } from "./CheckOutFlow";
-import { ProductOffers } from "../productoffer/ProductOffers";
 import { CheckoutSummary } from "../checkoutsummary/CheckoutSummary";
 import { Payment } from "../../components/paymentformcard/Payment";
 import { AddressEditor } from "../addresseditor";
-import { CheckoutStepContext, CheckoutStepContextProvider } from "../../context/checkoutcontext/CheckoutStepContext";
-import { useGetProductQuery, Product } from "../../generated/graphql";
+import { CheckoutStepContext} from "../../context/checkoutcontext/CheckoutStepContext";
+import { useGetProductQuery} from "../../generated/graphql";
 import { ErrorMessage } from "../../pages/pageframe/global/Messages/ErrorMessage";
 
 

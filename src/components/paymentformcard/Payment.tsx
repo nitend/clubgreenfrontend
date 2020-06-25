@@ -5,7 +5,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {PaymentForm} from './PaymentForm'
 import { STRIPE_PUBLIC_KEY } from "../../config";
 import { BasicContentBox } from "../../pages/pageframe/global/StyledComponents";
-import { Typography, Tabs, Tab, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from "@material-ui/core";
+import { Typography, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid

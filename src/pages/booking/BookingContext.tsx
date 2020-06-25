@@ -1,4 +1,3 @@
-import { Property } from "../../generated/graphql";
 import { Moment } from "moment";
 import React from "react";
 

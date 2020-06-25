@@ -18,6 +18,7 @@ export const App: React.FC<Props> = () => {
     const [isloading, setLoading] = useState(true);
     const [failed, isFailed] = useState();
 
+    /*
     useEffect(() => {
         fetch (BASE_BACKEND_URL +"refresh_token", {
             method: "POST",
@@ -32,6 +33,7 @@ export const App: React.FC<Props> = () => {
         }     
         );
     }, [])
+    */
 
     if(failed){
         return (
